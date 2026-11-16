@@ -1,0 +1,30 @@
+# Lab6 地址拆分实验
+## 一、实验目的
+理解分页存储管理原理，掌握逻辑地址拆分为页号和页内偏移的计算方法。
+
+## 二、实验原理
+分页存储将内存划分为固定大小的页框，程序逻辑地址可以拆分为：页号 + 页内偏移。
+偏移量 = 逻辑地址 % 页面大小
+页号 = 逻辑地址 / 页面大小
+
+## 三、实验代码
+```c
+#include <stdio.h>
+
+// 地址拆分：逻辑页号 + 页内偏移
+#define PAGE_SIZE 4096  // 4KB页面
+
+int main()
+{
+    unsigned int logic_addr;
+    printf("请输入逻辑地址（十进制）：");
+    scanf("%u", &logic_addr);
+
+    unsigned int page_no = logic_addr / PAGE_SIZE;
+    unsigned int offset  = logic_addr % PAGE_SIZE;
+
+    printf("逻辑地址：%u\n", logic_addr);
+    printf("页号：%u\n", page_no);
+    printf("页内偏移：%u\n", offset);
+    return 0;
+}
